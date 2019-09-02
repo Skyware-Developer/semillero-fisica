@@ -3,3 +3,7 @@ Repositorio para almacenar scripts trabajados en el semillero de física computa
 
 # Ejercicio
 - Desarrollar un sistema donde una bola colisiona con dos paredes definidas a ambos lados de la pantalla.
+
+# Libro 
+
+- https://www.dsf.unica.it/~fiore/survey.pdf
