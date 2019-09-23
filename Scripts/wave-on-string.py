@@ -36,7 +36,7 @@ for j in range(nT-1):
         y[i,j+1] = 2*y[i,j] - y[i,j-1] + (dt**2/m[i])*(k[i-1]*y[i+1,j] -2*k[i-1]*y[i,j] + k[i]*y[i-1,j] )
 
     #check values of edges
-    print y[:2,j+1],y[-2:,j+1]
+    print (y[:2,j+1],y[-2:,j+1])
 
     # Creates an animation
     cla()
@@ -45,4 +45,5 @@ for j in range(nT-1):
     ylim(-10,10)
     plot(x,y[:,j-2])
     pause(0.001)
+    
 close()
