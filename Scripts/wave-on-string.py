@@ -21,12 +21,16 @@ dt = 0.04
 #  3 vectors
 x = arange( N )*dx # x points
 t = arange( N )*dt # t points
-
-
 y = zeros( [N, nT ] )# 2D array
+
+
 # Loop over initial condition
 for i in range(N-1):
-    y[i,0] = sin((7.*pi*i)/(N-1)) # Initial condition dependent on mass point
+    ci_i = sin(7.*pi*i/(N-1)) # Initial condition dependent on mass point
+    if np.sign(ci_i*y[i-1,0])<0:
+        break
+    else:
+        y[i,0] = ci_i
 
 
 # Iterating over time and position to find next position of wave
@@ -38,12 +42,14 @@ for j in range(nT-1):
     #check values of edges
     print (y[:2,j+1],y[-2:,j+1])
 
-    # Creates an animation
+    # Creates an animation    
     cla()
-    ylabel("Amplitude")
+    title('Ondas en una cuerda')
+    ylabel("Amplitud")
     xlabel("x")    
     ylim(-10,10)
-    plot(x,y[:,j-2])
+    plot(x,y[:,j-2])    
     pause(0.001)
+    
     
 close()
