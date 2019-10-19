@@ -1,6 +1,9 @@
 from numpy import *
 from  matplotlib.pyplot import *
 
+#Crear una funcion con la derivada parcial resuelta y en cada punto que haga el cálculo de la fricción
+#Entonces en cada punto muestre los datos evaluados.
+
 # Variables
 N = 201 # Number of mass points
 nT = 1200 # Number of time points
