@@ -1,55 +1,53 @@
 from numpy import *
 from  matplotlib.pyplot import *
 
+A = 5 # Amplitud de la onda
+
 # Variables
-N = 201 # Number of mass points
-nT = 1200 # Number of time points
-mi = 0.02 # mass in kg
-m = [mi]*N # mass array
-m[-1] = 100 # Large last mass reflective edges
-m[0] = 100 # Large first mass  reflective edges
-ki = 10.#spring 
+N = 201 # Número de puntos de masa
+nT = 1200
+mi = 0.02
+m = [mi]*N # Array de puntos de masa
+m[-1] = 100 
+m[0] = 100 
+ki = 10.
 k = [ki]*N
 k[-1] = 0
 dx = 0.2
 kappa = ki*dx
 my = mi/dx
-c = sqrt(kappa/my) # velocity 
+c = sqrt(kappa/my) # Rapidez
 
 dt = 0.04
+#  Vectores 
+x = arange( N )*dx # Puntos en X
+t = arange( N )*dt # Puntos en t
+y = zeros( [N, nT ] )# Array 2D auxiliar
 
-#  3 vectors
-x = arange( N )*dx # x points
-t = arange( N )*dt # t points
-y = zeros( [N, nT ] )# 2D array
 
-
-# Loop over initial condition
+# Ciclo inicializador
 for i in range(N-1):
-    ci_i = sin(7.*pi*i/(N-1)) # Initial condition dependent on mass point
+    ci_i = (A * 0.1) * sin(7.*pi*i/(N-1)) # Condiciones iniciales
+
     if np.sign(ci_i*y[i-1,0])<0:
         break
     else:
         y[i,0] = ci_i
 
 
-# Iterating over time and position to find next position of wave
+# Iteración que busca la siguiente posición de la onda en el espacio-tiempo
 for j in range(nT-1):
 
     for i in range(N-1):
-        y[i,j+1] = 2*y[i,j] - y[i,j-1] + (dt**2/m[i])*(k[i-1]*y[i+1,j] -2*k[i-1]*y[i,j] + k[i]*y[i-1,j] )
+        y[i,j+1] = 2 * y[i,j] - y[i,j-1] + (dt**2/m[i]) * (k[i-1] * y[i+1,j] - 2 * k[i-1] * y[i,j] + k[i] * y[i-1,j]) # Fórmula de la onda
 
-    #check values of edges
-    print (y[:2,j+1],y[-2:,j+1])
-
-    # Creates an animation    
+    # Creación de la animación
     cla()
     title('Ondas en una cuerda')
     ylabel("Amplitud")
-    xlabel("x")    
-    ylim(-10,10)
-    plot(x,y[:,j-2])    
+    xlabel("x")
+    ylim(-A-2,A+2)
+    plot(x,y[:,j-2])  
     pause(0.001)
-    
     
 close()
