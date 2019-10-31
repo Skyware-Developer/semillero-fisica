@@ -1,7 +1,12 @@
 from numpy import *
 from  matplotlib.pyplot import *
 
+<<<<<<< HEAD
 A = 5 # Amplitud de la onda
+=======
+#Crear una funcion con la derivada parcial resuelta y en cada punto que haga el cálculo de la fricción
+#Entonces en cada punto muestre los datos evaluados.
+>>>>>>> b86dbc0f3f1775d859613bd03026745b42c9af7d
 
 # Variables
 N = 201 # Número de puntos de masa
